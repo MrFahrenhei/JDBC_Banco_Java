@@ -1,4 +1,4 @@
-package main.java.br.com.bytebank.domain.client;
+package br.com.bytebank.domain.client;
 
 import java.util.Objects;
 

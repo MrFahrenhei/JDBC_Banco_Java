@@ -1,6 +1,6 @@
-package main.java.br.com.bytebank.domain.account;
+package br.com.bytebank.domain.account;
 
-import main.java.br.com.bytebank.domain.client.Client;
+import br.com.bytebank.domain.client.Client;
 
 import java.math.BigDecimal;
 import java.util.Objects;

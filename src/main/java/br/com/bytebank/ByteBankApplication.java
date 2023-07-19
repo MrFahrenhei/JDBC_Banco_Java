@@ -1,39 +1,27 @@
-package main.java.br.com.bytebank;
+package br.com.bytebank;
 
-import main.java.br.com.bytebank.domain.ExceptionRuleNegociation;
-import main.java.br.com.bytebank.domain.account.AccountService;
-import main.java.br.com.bytebank.domain.account.OpenedAccountDetails;
-import main.java.br.com.bytebank.domain.client.ClientData;
+import br.com.bytebank.domain.ExceptionRuleNegociation;
+import br.com.bytebank.domain.account.AccountService;
+import br.com.bytebank.domain.account.OpenedAccountDetails;
+import br.com.bytebank.domain.client.ClientData;
 
 import java.util.Scanner;
 
 public class ByteBankApplication {
-    private static AccountService service = new AccountService();
-    private static Scanner keyboard = new Scanner(System.in).useDelimiter("\n");
+    private static final AccountService service = new AccountService();
+    private static final Scanner keyboard = new Scanner(System.in).useDelimiter("\n");
 
     public static void main(String[] args) {
         var option = renderMenu();
         while (option != 7) {
             try {
                 switch (option) {
-                    case 1:
-                        listAccounts();
-                        break;
-                    case 2:
-                        openAccount();
-                        break;
-                    case 3:
-                        endAccount();
-                        break;
-                    case 4:
-                        checkBalance();
-                        break;
-                    case 5:
-                        withdrawBalance();
-                        break;
-                    case 6:
-                        depositBalance();
-                        break;
+                    case 1 -> listAccounts();
+                    case 2 -> openAccount();
+                    case 3 -> endAccount();
+                    case 4 -> checkBalance();
+                    case 5 -> withdrawBalance();
+                    case 6 -> depositBalance();
                 }
             } catch (ExceptionRuleNegociation e) {
                 System.out.println("Error: " + e.getMessage());
@@ -45,7 +33,8 @@ public class ByteBankApplication {
         System.out.println("Finalizado");
     }
 
-    private static int renderMenu() {
+    private static int renderMenu()
+    {
         System.out.println("""
                  BYTEBANK - ESCOLHA UMA OPÇÃO:
                  1 - Listar contas abertas
@@ -58,7 +47,6 @@ public class ByteBankApplication {
                 """);
         return keyboard.nextInt();
     }
-
     private static void listAccounts()
     {
         System.out.println("Contas abertas");
@@ -67,7 +55,6 @@ public class ByteBankApplication {
         System.out.println("pressione qualquer tecla para voltar");
         keyboard.next();
     }
-
     private static void openAccount()
     {
         System.out.println("Digite o número da conta: ");
