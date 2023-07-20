@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     public Connection recoveryConnection()
     {
-        // \sql -> \connect root@localhost:3307 -> psw
+        // mysqlsh -> \sql -> \connect root@localhost:3307 -> psw
         try {
             return DriverManager.getConnection("jdbc:mysql://localhost:3307/byte_bank?user=root&password=root");
         }catch (SQLException e){

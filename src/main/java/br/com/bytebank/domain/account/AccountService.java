@@ -23,7 +23,8 @@ public class AccountService {
     private Set<Account> accounts = new HashSet<>();
 
     public Set<Account> listOpenedAccounts() {
-        return accounts;
+        Connection conn = connection.recoveryConnection();
+        return new ContaDAO(conn).list();
     }
 
     public BigDecimal consultBalance(Integer accountNumber) {
