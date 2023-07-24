@@ -13,7 +13,7 @@ public class ByteBankApplication {
 
     public static void main(String[] args) {
         var option = renderMenu();
-        while (option != 7) {
+        while (option != 8) {
             try {
                 switch (option) {
                     case 1 -> listAccounts();
@@ -22,6 +22,7 @@ public class ByteBankApplication {
                     case 4 -> checkBalance();
                     case 5 -> withdrawBalance();
                     case 6 -> depositBalance();
+                    case 7 -> doTransference();
                 }
             } catch (ExceptionRuleNegociation e) {
                 System.out.println("Error: " + e.getMessage());
@@ -32,7 +33,6 @@ public class ByteBankApplication {
         }
         System.out.println("Finalizado");
     }
-
     private static int renderMenu()
     {
         System.out.println("""
@@ -43,7 +43,8 @@ public class ByteBankApplication {
                  4 - Consultar saldo de uma conta
                  5 - Realizar saque em uma conta
                  6 - Realizar depósito em uma conta
-                 7 - Sair
+                 7 - Realizar Transferência
+                 8 - Sair
                 """);
         return keyboard.nextInt();
     }
@@ -122,5 +123,20 @@ public class ByteBankApplication {
         System.out.println("Depósito realizado com sucesso");
         System.out.println("Pressione qualquer tecla para retornar ao menu");
         keyboard.next();
+    }
+    private static void doTransference() {
+        System.out.println("Digite a conta de origem: ");
+        var originAccountNumber = keyboard.nextInt();
+
+        System.out.println("Digite a conta que vai receber: ");
+        var accountNumber = keyboard.nextInt();
+
+        System.out.println("Valor a ser transferido: ");
+        var value = keyboard.nextBigDecimal();
+
+        service.doTransferBalance(originAccountNumber, accountNumber, value);
+        System.out.println("Transferência realizado com sucesso");
+        System.out.println("Pressione qualquer tecla para retornar ao menu");
+        keyboard.next();;
     }
 }

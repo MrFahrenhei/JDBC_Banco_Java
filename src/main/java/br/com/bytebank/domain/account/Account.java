@@ -7,31 +7,28 @@ import java.util.Objects;
 
 public class Account {
     private Integer number;
-    private BigDecimal saldo;
+    private BigDecimal balance;
     private Client titular;
 
-    public Account(Integer number, Client titular)
+    private Boolean estaAtiva;
+
+    public Account(Integer number, BigDecimal balance, Client titular, Boolean estaAtiva)
     {
         this.number = number;
         this.titular = titular;
-        this.saldo = BigDecimal.ZERO;
+        this.balance = balance;
+        this.estaAtiva = estaAtiva;
     }
 
     public boolean hasBalance()
     {
-        return this.saldo.compareTo(BigDecimal.ZERO) != 0;
+        return this.balance.compareTo(BigDecimal.ZERO) != 0;
     }
 
     public void withdrawValue(BigDecimal value)
     {
-        this.saldo = this.saldo.subtract(value);
+        this.balance = this.balance.subtract(value);
     }
-
-    public void depoist(BigDecimal value)
-    {
-        this.saldo = this.saldo.add(value);
-    }
-
     @Override
     public boolean equals(Object o)
     {
@@ -52,9 +49,9 @@ public class Account {
         return number;
     }
 
-    public BigDecimal getSaldo()
+    public BigDecimal getBalance()
     {
-        return saldo;
+        return balance;
     }
 
     public Client getTitular()
@@ -62,11 +59,15 @@ public class Account {
         return titular;
     }
 
+    public Boolean getEstaAtiva() {
+        return estaAtiva;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
                 "number='"+number+"', " +
-                "saldo='"+saldo+"', " +
+                "saldo='"+balance+"', " +
                 "titular='"+titular+"'" +
                 "}";
     }
